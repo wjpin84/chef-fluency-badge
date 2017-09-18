@@ -6,17 +6,17 @@
 # Basic apache installation and service starting.
 
 if node['platform_family'] == 'rhel'
-  apache_pkg = "httpd"
+  package  = "httpd"
 elsif node['platform_family'] == 'debian'
-  apache_pkg = "apache2"
+  package = "apache2"
 end
 
 package 'apache2' do
-  package_name apache_pkg
+  package_name package
   action :install
 end
 
 service 'apache2' do
-  service_name apache_pkg
+  service_name package
   action [:enable, :start]
 end
